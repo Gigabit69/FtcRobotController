@@ -42,8 +42,8 @@ public class Drivetrain {
     yt = -gamepad.left_stick_y;
 
     topRightMotor.setPower(-xt+yt);
-    topLeftMotor.setPower(xt+yt);
+    topLeftMotor.setPower(-1*(xt+yt));
     bottomRightMotor.setPower(xt+yt);
-    bottomLeftMotor.setPower(-xt+yt);
+    bottomLeftMotor.setPower(-1*(-xt+yt));
   }
 }
