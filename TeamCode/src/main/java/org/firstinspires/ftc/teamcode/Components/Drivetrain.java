@@ -53,8 +53,8 @@ public class Drivetrain {
     //if x=-1 then trm&brm= 1 tlm&blm= -1
 
     topRightMotor.setPower(-xt+yt-turnx);
-    topLeftMotor.setPower(-1*(xt+yt)+turnx);
+    topLeftMotor.setPower(-1*(xt+yt+turnx));
     bottomRightMotor.setPower(xt+yt-turnx);
-    bottomLeftMotor.setPower(-1*(-xt+yt)+turnx);
+    bottomLeftMotor.setPower(-1*(-xt+yt+turnx));
   }
 }
