@@ -15,6 +15,7 @@ public class Drivetrain {
 
   double xt;
   double yt;
+  double turnx;
 
   /*
   2 functions: initialize, loop
@@ -41,9 +42,19 @@ public class Drivetrain {
     xt = gamepad.left_stick_x;
     yt = -gamepad.left_stick_y;
 
-    topRightMotor.setPower(-xt+yt);
-    topLeftMotor.setPower(-1*(xt+yt));
-    bottomRightMotor.setPower(xt+yt);
-    bottomLeftMotor.setPower(-1*(-xt+yt));
+    turnx = gamepad.right_stick_x;
+    /*
+    if x=1 then trm&brm= -1 tlm&blm= 1
+    topRightMotor.setPower(-turnx);
+    bottomRightMotor.setPower(-turnx);
+    topLeftMotor.setPower(turnx);
+    bottomLeftMotor.setPower(turnx);
+    */
+    //if x=-1 then trm&brm= 1 tlm&blm= -1
+
+    topRightMotor.setPower(-xt+yt-turnx);
+    topLeftMotor.setPower(-1*(xt+yt)+turnx);
+    bottomRightMotor.setPower(xt+yt-turnx);
+    bottomLeftMotor.setPower(-1*(-xt+yt)+turnx);
   }
 }
