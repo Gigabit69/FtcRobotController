@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Components;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -12,6 +13,7 @@ public class Drivetrain {
   public DcMotorEx bottomLeftMotor;
 
   public Gamepad gamepad;
+  //public Gamepad gamepad; same as public Gamepad gamepad = null;
 
   double xt;
   double yt;
@@ -32,6 +34,9 @@ public class Drivetrain {
     bottomLeftMotor = hwMap.get(DcMotorEx.class, "bottomLeftMotor");
 
     gamepad = gmPad;
+
+    topLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+    bottomLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
   }
 
   // left_stick_x looks at the left right of the joystick left=-1.0 center=0.0 right=1.0
@@ -53,8 +58,8 @@ public class Drivetrain {
     //if x=-1 then trm&brm= 1 tlm&blm= -1
 
     topRightMotor.setPower(-xt+yt-turnx);
-    topLeftMotor.setPower(-1*(xt+yt+turnx));
+    topLeftMotor.setPower(xt+yt+turnx);
     bottomRightMotor.setPower(xt+yt-turnx);
-    bottomLeftMotor.setPower(-1*(-xt+yt+turnx));
+    bottomLeftMotor.setPower(-xt+yt+turnx);
   }
 }
