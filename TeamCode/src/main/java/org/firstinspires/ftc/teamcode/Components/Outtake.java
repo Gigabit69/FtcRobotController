@@ -26,9 +26,11 @@ public class Outtake {
         public void run() {
             velocity = 0;
             timer.cancel();
+            timerRunning = false;
         }
     };
 
+    public boolean timerRunning = false;
 
     public Stop stopTask = new Stop();
 
@@ -50,10 +52,11 @@ public class Outtake {
         outtakeMotor.setVelocity(velocity);
 
         currentVelocity = outtakeMotor.getVelocity();
-        if (currentVelocity==velocity)
+        if (currentVelocity==velocity & timerRunning==false)
         {
             //wait one second before setting velocity to 0
             timer.schedule(stopTask, 5000);
+            timerRunning = true;
         }
     }
 
