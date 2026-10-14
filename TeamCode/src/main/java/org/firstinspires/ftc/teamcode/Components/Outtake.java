@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Components;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Outtake {
 
@@ -17,6 +19,18 @@ public class Outtake {
     public final double launchSpeed = 1200;
     public double velocity = 0;
     public double currentVelocity;
+
+    Timer timer = new Timer();
+    class Stop extends TimerTask {
+        @Override
+        public void run() {
+            velocity = 0;
+            timer.cancel();
+        }
+    };
+
+
+    public Stop stopTask = new Stop();
 
     public Outtake(HardwareMap hwMap, Gamepad gmPad)
     {
@@ -39,7 +53,7 @@ public class Outtake {
         if (currentVelocity==velocity)
         {
             //wait one second before setting velocity to 0
-            velocity = 0;
+            timer.schedule(stopTask, 5000);
         }
     }
 
