@@ -22,18 +22,18 @@ public class testingCamera extends OpMode {
     public void loop() {
         lemon.update(gamepad1,0);
 
-        if(!lemon.currentDetections.isEmpty()) {
-            telemetry.addData("what: ", lemon.currentDetections.get(0));
+        if(lemon.lresult != null && lemon.lemon != null) {
+            telemetry.addData("X: ", lemon.lresult.getTx());
+            telemetry.addData("Y: ", lemon.lresult.getTy());
+            if(lemon.mePose != null) {
+                telemetry.addData("raise your yawyawyaw", lemon.yawyaw);
+            }
+        } else {
+            telemetry.addData("what", "false");
         }
 
-        if (lemon.botPose != null) {
-            telemetry.addData("YAW", lemon.botPose);
-            telemetry.addData("ROLL", lemon.botPose.getOrientation().getRoll());
-            telemetry.addData("PITCH", lemon.botPose.getOrientation().getPitch());
 
 
-            telemetry.addData("Tx", lemon.llResult.getTx());
-            telemetry.addData("Ty", lemon.llResult.getTy());
-        }
     }
 }
+
