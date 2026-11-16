@@ -57,13 +57,13 @@ public class sixseven extends OpMode
             topRightMotor.setPower(0);
             bottomRightMotor.setPower(0);
         }
-        else if (rx < 0) { //
+        else if (rx < 0) { //left
             topLeftMotor.setPower(rx);
             bottomLeftMotor.setPower(rx);
             topRightMotor.setPower(rx);
             bottomRightMotor.setPower(rx);
         }
-        else if (rx > 0) {
+        else if (rx > 0) { //right
             topLeftMotor.setPower(rx);
             bottomLeftMotor.setPower(rx);
             topRightMotor.setPower(rx);
