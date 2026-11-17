@@ -22,38 +22,21 @@ public class Camera {
 
     //limelight :D
     public Limelight3A lemon;
-
     public IMU imu;
-
-    public List<AprilTagDetection> currentDetections;
 
     public Pose3D mePose = null;
     public LLResult lresult = null;
     public YawPitchRollAngles yawyaw = null;
 
-    public YawPitchRollAngles orientation;
-
-    // Variable that figures out information from april tags
-    private AprilTagProcessor johnCamera;
-
-    private VisionPortal seeingGate;
-
-    private VisionPortal bert;
-
-    public AprilTagDetection curDetection;
-
     public int curCode = 0;
     public double curYaw = 0;
     public double curDistance = 0;
 
+    public final double hiveDownHeight = 1.0;
+    public final double hiveUpHeight = 1.0;
+
     public Camera(HardwareMap hwMap)
     {
-        johnCamera = new AprilTagProcessor.Builder()
-                .setTagFamily(AprilTagProcessor.TagFamily.TAG_36h11)
-                .build();
-
-        VisionPortal.Builder bob = new VisionPortal.Builder();
-
         lemon = hwMap.get(Limelight3A.class, "limelight3a");
         lemon.pipelineSwitch(0);
 
@@ -78,6 +61,33 @@ public class Camera {
         }
 
         lemon.updateRobotOrientation(yawyaw.getYaw());
+        curDistance = getDistance(lresult.getTa());
     }
+
+    public double getDistance(double ta)
+    {
+        double distance = 70.52322*Math.pow(ta,-0.503861);
+        return distance *100;
+    }
+
+    public String isDown()
+    {
+        double h = curDistance*Math.sin(yawyaw.getPitch());
+
+        if(Math.abs(hiveDownHeight-h) <= 5.0)
+        {
+            return "down";
+        }
+        else if(Math.abs(hiveUpHeight-h) <= 5.0)
+        {
+            return "up";
+        }
+
+        return "none";
+    }
+
+
+
+
 
 }

@@ -28,6 +28,7 @@ public class testingCamera extends OpMode {
             if(lemon.mePose != null) {
                 telemetry.addData("raise your yawyawyaw", lemon.yawyaw);
             }
+            telemetry.addData("Distance (mm) = ", lemon.curDistance);
         } else {
             telemetry.addData("what", "false");
         }
