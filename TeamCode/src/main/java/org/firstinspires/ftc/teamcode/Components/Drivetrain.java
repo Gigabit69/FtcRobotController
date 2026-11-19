@@ -25,7 +25,6 @@ public class Drivetrain {
 
         topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
         topRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         topLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bottomRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

@@ -14,8 +14,6 @@ public class Lights {
 
     public ElapsedTime runtime = new ElapsedTime();
 
-    public int mode = 0;
-
     public Lights(HardwareMap imTheMap) {
 
         zeppelin = imTheMap.get(RevBlinkinLedDriver.class, "led");
@@ -30,11 +28,9 @@ public class Lights {
 
         if (lightLY == 0) {
             colorscolorscolors = RevBlinkinLedDriver.BlinkinPattern.RAINBOW_RAINBOW_PALETTE;
-        }
-        else if (lightLY > 0) {
+        } else if (lightLY > 0) {
             colorscolorscolors = RevBlinkinLedDriver.BlinkinPattern.GREEN;
-        }
-        else if (lightLY < 0) {
+        } else if (lightLY < 0) {
             colorscolorscolors = RevBlinkinLedDriver.BlinkinPattern.RED;
         }
 
@@ -46,21 +42,13 @@ public class Lights {
 
         if (runtime.seconds() <= 10) {
             colorscolorscolors = RevBlinkinLedDriver.BlinkinPattern.BLUE;
-        }
-        else if (runtime.seconds() > 10 && runtime.seconds() <= 20) {
+        } else if (runtime.seconds() > 10 && runtime.seconds() <= 20) {
             colorscolorscolors = RevBlinkinLedDriver.BlinkinPattern.ORANGE;
-        }
-        else if (runtime.seconds() > 20) {
+        } else if (runtime.seconds() > 20) {
             colorscolorscolors = RevBlinkinLedDriver.BlinkinPattern.RED;
         }
 
         zeppelin.setPattern(colorscolorscolors);
-    }
-
-    public void colorSwitch(Gamepad switchPad) {
-
-        if (switchPad.dpadDownWasPressed()) { mode++; }
-
     }
 
 }
